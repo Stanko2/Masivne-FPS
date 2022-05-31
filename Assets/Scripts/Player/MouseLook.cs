@@ -1,4 +1,5 @@
 using System;
+using Cinemachine;
 using UnityEngine;
 
 namespace Player
@@ -7,6 +8,8 @@ namespace Player
     {
         public float mouseSensitivity = 170f;
         public Transform player;
+        public GameObject aimCamera;
+        public GameObject camera;
         public PlayerController controller;
         private float _currRot;
         
@@ -19,19 +22,21 @@ namespace Player
         {
             if (!controller.View.IsMine)
             {
-                Destroy(gameObject);
+                Destroy(aimCamera);
+                Destroy(camera);
                 return;
             }
                 
             
             var rotX = Input.GetAxis("Mouse X");
             var rotY = Input.GetAxis("Mouse Y");
-            
             player.RotateAround(player.position, Vector3.up, rotX * mouseSensitivity * Time.deltaTime);
 
             _currRot += rotY * mouseSensitivity * Time.deltaTime;
             _currRot = Mathf.Clamp(_currRot, -90f, 90f);
-            transform.localRotation = Quaternion.Euler(_currRot, 0,0);
+            transform.localRotation = Quaternion.Euler(_currRot, 0, 0);
         }
+        
+        
     }
 }

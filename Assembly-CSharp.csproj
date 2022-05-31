@@ -52,19 +52,40 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\Player\Gravity.cs" />
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
-     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
+     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+     <Compile Include="Assets\Scripts\ConnectToServer.cs" />
      <Compile Include="Assets\Scripts\Player\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Player\Gravity.cs" />
-     <Compile Include="Assets\Scripts\ConnectToServer.cs" />
-     <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
+     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
      <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
+     <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
+     <Compile Include="Assets\Scripts\Gun.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerShoot.cs" />
+     <None Include="Assets\Models\Guns\VSS\Texture\M_WEP_VSS_Reticle.props.txt" />
+     <None Include="Assets\Models\Guns\SKS\Texture\M_WEP_SKS_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\AWM\Texture\M_WEP_AWM.props.txt" />
      <None Include="Assets\Photon\PhotonLibs\netstandard2.0\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\changelog.txt" />
+     <None Include="Assets\Models\Guns\SLR\Texture\M_WEP_SLR_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\SKS\Texture\M_WEP_SKS.props.txt" />
+     <None Include="Assets\Models\Guns\K98k\Texture\M_WEP_98k_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\AWM\Texture\M_WEP_AWM_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\K98k\Texture\M_WEP_98k.props.txt" />
+     <None Include="Assets\Models\Guns\M24\Texture\M_WEP_M24_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\MK14\Texture\M_WEP_MK14_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\VSS\Texture\M_WEP_VSS.props.txt" />
      <None Include="Assets\Photon\PhotonLibs\changes-library.txt" />
      <None Include="Assets\Photon\PhotonUnityNetworking\readme.txt" />
+     <None Include="Assets\Models\Guns\Mini14\Texture\M_WEP_Mini14_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\SLR\Texture\M_WEP_SLR.props.txt" />
+     <None Include="Assets\Models\Guns\M24\Texture\M_WEP_M24.props.txt" />
+     <None Include="Assets\Models\Guns\Win1894\Texture\M_WEP_Win1894.props.txt" />
+     <None Include="Assets\Models\Guns\MK14\Texture\M_WEP_MK14.props.txt" />
+     <None Include="Assets\Models\Guns\Win1894\Texture\M_WEP_Win1894_Lod.props.txt" />
+     <None Include="Assets\Models\Guns\Mini14\Texture\M_WEP_Mini14.props.txt" />
+     <None Include="Assets\Models\Guns\VSS\Texture\M_WEP_VSS_Lod.props.txt" />
      <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.xml" />
      <None Include="Assets\Photon\PhotonUnityNetworking\link.xml" />
  <Reference Include="UnityEngine">
@@ -286,11 +307,14 @@
  <Reference Include="UnityEditor.UnityConnectModule">
  <HintPath>/home/stanko/Games/2020.3.19f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
+ <Reference Include="websocket-sharp">
+ <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ </Reference>
  <Reference Include="Photon3Unity3D">
  <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll</HintPath>
  </Reference>
- <Reference Include="websocket-sharp">
- <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ <Reference Include="Unity.Burst.Unsafe">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/home/stanko/Games/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -640,17 +664,11 @@
  <Reference Include="netstandard">
  <HintPath>/home/stanko/Games/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/netstandard.dll</HintPath>
  </Reference>
- <Reference Include="Unity.ShaderGraph.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.VSCode.Editor">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.RenderPipelines.Universal.Shaders">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
- </Reference>
- <Reference Include="Unity.RenderPipelines.Universal.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.RenderPipelines.Universal.Runtime">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
@@ -661,23 +679,17 @@
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
- <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
- </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Mathematics.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ <Reference Include="Unity.Burst.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Searcher.Editor">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
@@ -685,11 +697,14 @@
  <Reference Include="Unity.RenderPipelines.Core.Runtime">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.ProBuilder.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
- <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <Reference Include="Unity.ProBuilder">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
@@ -700,23 +715,50 @@
  <Reference Include="UnityEngine.UI">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
- <Reference Include="Unity.RenderPipelines.Core.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+ <Reference Include="Unity.PlasticSCM.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Animation.Rigging">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Animation.Rigging.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
  </Reference>
- <Reference Include="Unity.ProBuilder">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.dll</HintPath>
+ <Reference Include="Unity.ShaderGraph.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
  </Reference>
- <Reference Include="Unity.ProBuilder.AddOns.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+ <Reference Include="Cinemachine">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
- <Reference Include="Unity.ProBuilder.Editor">
- <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.Editor.dll</HintPath>
+ <Reference Include="Unity.Burst">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+ </Reference>
+ <Reference Include="com.unity.cinemachine.editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Universal.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Timeline.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Mathematics.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Animation.Rigging.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Animation.Rigging.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -732,14 +774,6 @@
       <Project>{e3757764-105d-c004-285d-b605059dcf2c}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.csproj">
-      <Project>{017ffbf0-c53a-98e9-f3bf-b10d85a920c8}</Project>
-      <Name>PhotonUnityNetworking</Name>
-    </ProjectReference>
-    <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
-      <Project>{f04df57f-70b8-06dd-e421-eaf35d50a53f}</Project>
-      <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
       <Project>{2de8eb8a-dbed-0098-87cc-daebeca1af22}</Project>
       <Name>PhotonRealtime</Name>
@@ -747,6 +781,14 @@
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{73f9b768-287d-c8d6-fcf9-4b184dd6e48c}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.csproj">
+      <Project>{017ffbf0-c53a-98e9-f3bf-b10d85a920c8}</Project>
+      <Name>PhotonUnityNetworking</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Utilities.Culling.Editor.csproj">
+      <Project>{f04df57f-70b8-06dd-e421-eaf35d50a53f}</Project>
+      <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

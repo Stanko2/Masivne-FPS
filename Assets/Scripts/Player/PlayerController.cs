@@ -11,7 +11,11 @@ namespace Player
         
         private CharacterController _controller;
         private Gravity _gravity;
+        private Vector3 _lastVelocity = Vector3.zero;
         public PhotonView View { get; private set; }
+        public Animator animator;
+        
+        
         
         private void Start()
         {
@@ -33,7 +37,13 @@ namespace Player
             if (Input.GetButtonDown("Jump") && _gravity.IsGrounded)
             {
                 _gravity.AddVerticalForce(Mathf.Sqrt(-2f * jumpHeight * _gravity.gravity));
+                animator.SetTrigger("Jump");
             }
+            
+            animator.SetFloat("SpeedX", horizontal);
+            animator.SetFloat("SpeedY", vertical);
+            animator.SetFloat("Speed", move.magnitude);
+            _lastVelocity = _controller.velocity;
         }
     }
 }

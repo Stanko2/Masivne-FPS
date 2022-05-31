@@ -52,25 +52,25 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\CustomTypesUnity.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Code\RegionHandler.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\LoadbalancingPeer.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\PhotonPing.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\Unity\PhotonAppSettings.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\RoomInfo.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\SupportLogger.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\FriendInfo.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\AppSettings.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\Room.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Code\Unity\Editor\AccountService.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\Player.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\PhotonPingClasses.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Code\Extensions.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\Unity\Editor\PhotonEditorUtils.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\ConnectionHandler.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\Region.cs" />
-     <Compile Include="Assets\Photon\PhotonRealtime\Code\LoadBalancingClient.cs" />
      <Compile Include="Assets\Photon\PhotonRealtime\Code\WebRpc.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\LoadbalancingPeer.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\PhotonPingClasses.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\Room.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\RoomInfo.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\Player.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\Unity\Editor\PhotonEditorUtils.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\LoadBalancingClient.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\Region.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\SupportLogger.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\AppSettings.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\FriendInfo.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\Unity\PhotonAppSettings.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\PhotonPing.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\ConnectionHandler.cs" />
+     <Compile Include="Assets\Photon\PhotonRealtime\Code\CustomTypesUnity.cs" />
      <None Include="Assets\Photon\PhotonRealtime\Code\changes-realtime.txt" />
      <None Include="Assets\Photon\PhotonRealtime\Code\PhotonRealtime.asmdef" />
  <Reference Include="UnityEngine">
@@ -310,6 +310,15 @@
  <Reference Include="Unity.Plastic.Antlr3.Runtime">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll</HintPath>
  </Reference>
+ <Reference Include="websocket-sharp">
+ <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
+ </Reference>
+ <Reference Include="Photon3Unity3D">
+ <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Burst.Unsafe">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/PackageCache/com.unity.burst@1.3.4/Unity.Burst.Unsafe.dll</HintPath>
+ </Reference>
  <Reference Include="log4netPlastic">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/log4netPlastic.dll</HintPath>
  </Reference>
@@ -318,12 +327,6 @@
  </Reference>
  <Reference Include="unityplastic">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/PackageCache/com.unity.collab-proxy@1.9.0/Lib/Editor/PlasticSCM/unityplastic.dll</HintPath>
- </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll</HintPath>
- </Reference>
- <Reference Include="websocket-sharp">
- <HintPath>/home/stanko/Games/Masivne FPS/Assets/Photon/PhotonLibs/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/home/stanko/Games/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
