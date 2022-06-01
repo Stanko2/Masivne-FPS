@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 170
+  rotationSpeed: 10
   player: {fileID: 2614296751678826252}
   aimCamera: {fileID: 269981468902358640}
   camera: {fileID: 6179228327820093578}
@@ -347,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 93223714789995074}
   - component: {fileID: 2865184103875045289}
+  - component: {fileID: 7641277277338306605}
   m_Layer: 6
   m_Name: Rig 1
   m_TagString: Untagged
@@ -385,6 +387,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Weight: 1
   m_Effectors: []
+--- !u!114 &7641277277338306605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149971287520042174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a9a54dc932415e88ab6e2b7be2271f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1167519329142054249
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,8 +408,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700962984809955944}
-  - component: {fileID: 6684754973533769283}
-  - component: {fileID: 5612757586049905379}
   m_Layer: 6
   m_Name: AimTarget
   m_TagString: Untagged
@@ -417,55 +429,6 @@ Transform:
   m_Father: {fileID: 2614296751678826252}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &6684754973533769283
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167519329142054249}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: bd2d742ee2ce7a740ae0cf992a38be74, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &5612757586049905379
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167519329142054249}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1316001307292883087
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +919,6 @@ GameObject:
   - component: {fileID: 2614296751678826254}
   - component: {fileID: 5627908787867916744}
   - component: {fileID: 783316992557757435}
-  - component: {fileID: 3869917176266447610}
   - component: {fileID: 6387715557346034917}
   m_Layer: 6
   m_Name: Player
@@ -1074,25 +1036,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!95 &3869917176266447610
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614296751678826250}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &6387715557346034917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1052,8 @@ MonoBehaviour:
   hand: {fileID: 712213248736246216}
   aimingTarget: {fileID: 700962984809955944}
   aimCamera: {fileID: 269981468902358640}
+  hitEffect: {fileID: 317651691580468130, guid: 5c8d9cdb49b0d53f08cbd19532b2d94c, type: 3}
+  animator: {fileID: 6924860859602288638}
 --- !u!1 &2829563538374454557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,7 +1710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RigLayers:
   - m_Rig: {fileID: 2865184103875045289}
-    m_Active: 1
+    m_Active: 0
   m_Effectors: []
 --- !u!114 &3982785026716426957
 MonoBehaviour:
@@ -1794,6 +1739,12 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: Jump
+  - Type: 9
+    SynchronizeType: 0
+    Name: Shoot
+  - Type: 9
+    SynchronizeType: 0
+    Name: Reload
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0

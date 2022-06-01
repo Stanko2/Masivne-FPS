@@ -9,4 +9,5 @@ public class Gun : MonoBehaviour
     public float damage;
     public float recoil;
     public int ammoCount;
+    public float reloadTime;
 }

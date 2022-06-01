@@ -46,11 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzle: {fileID: 3700176782691556975}
-  muzzleFlashEffect: {fileID: 0}
-  rateOfFire: 0
-  damage: 0
-  recoil: 0
-  ammoCount: 0
+  muzzleFlashEffect: {fileID: 6422160351800543127, guid: 47b0becb56991dc6381f1d815a7dff77, type: 3}
+  rateOfFire: 0.1
+  damage: 20
+  recoil: 2
+  ammoCount: 20
+  reloadTime: 5
 --- !u!1 &3279716744108202053
 GameObject:
   m_ObjectHideFlags: 0
