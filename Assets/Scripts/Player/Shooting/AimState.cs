@@ -7,8 +7,6 @@ namespace Player.Shooting
 {
     public class AimState : IStateMachineState<PlayerShoot>
     {
-        private float _timer;
-        private float _lastShot;
         private float _ammoRemaining;
         public AimState(PlayerShoot playerShoot, int ammo)
         {
@@ -18,7 +16,6 @@ namespace Player.Shooting
         public void Update()
         {
             Component.UpdateAimPosition();
-            _timer += Time.deltaTime;
         }
 
         public void OnEnter(IStateMachineState<PlayerShoot> from)
@@ -27,8 +24,6 @@ namespace Player.Shooting
                 _ammoRemaining = Component.Gun.ammoCount;
             else if (from is ShootState)
                 _ammoRemaining--;
-            _timer = 0;
-            _lastShot = 0;
         }
 
         public void OnLeave()

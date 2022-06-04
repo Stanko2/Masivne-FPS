@@ -12,14 +12,15 @@ namespace Player
         public Transform aimingTarget;
         public GameObject aimCamera;
         public GameObject hitEffect;
-
+        public LayerMask shootMask;
+        
         public Gun Gun { get; private set; }
         private Transform _aimTransform;
         private PhotonView _view;
         public Animator animator;
 
         private int _ammoRemaining;
-        
+        private RaycastHit _hit;
         private void Start()
         {
             Gun = Instantiate(gunPrefab, hand).GetComponent<Gun>();
@@ -44,23 +45,23 @@ namespace Player
             _timer += Time.deltaTime;
             if (Input.GetButton("Fire1"))
                 SendShoot();
-           
+            UpdateAimPosition();
         }
 
         public void UpdateAimPosition()
         {
             aimCamera.SetActive(Input.GetButton("Fire2"));
-            
-            gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-            if (Physics.Raycast(_aimTransform.position, _aimTransform.forward, out var hit))
+
+            GetComponent<Collider>().enabled = false;
+            if (Physics.Raycast(_aimTransform.position, _aimTransform.forward, out _hit))
             {
-                aimingTarget.position = hit.point;
-                Debug.Log(hit.collider.name);
+                aimingTarget.position = _hit.point;
             }
             else
                 aimingTarget.position = _aimTransform.position + 100 * _aimTransform.forward;
 
-            gameObject.layer = LayerMask.NameToLayer("Players");
+            GetComponent<Collider>().enabled = true;
+
         }
         
         [PunRPC]
@@ -82,24 +83,31 @@ namespace Player
                     _ammoRemaining = Gun.ammoCount;
                 }
                 else
-                    photonView.RPC(nameof(Shoot), RpcTarget.All);
+                {
+                    photonView.RPC(nameof(Shoot), RpcTarget.All, _aimTransform.position, _aimTransform.forward);
+                }
+                    
                 
             }
         }
         
         [PunRPC]
-        private void Shoot()
+        private void Shoot(Vector3 position, Vector3 direction)
         {
-            
-            var effect = Instantiate(Gun.muzzleFlashEffect, Gun.muzzle.position, Gun.muzzle.rotation);
+            var effect = Instantiate(Gun.muzzleFlashEffect, Gun.muzzle);
             Destroy(effect, .2f);
             animator.SetTrigger("Shoot");
             GetComponentInChildren<MouseLook>().AddRecoil(-Gun.recoil);
-            if (Physics.Raycast(_aimTransform.position, _aimTransform.forward, out var hit))
+            if (Physics.Raycast(position, direction, out var hit, float.PositiveInfinity ,shootMask))
             {
-                var o = Instantiate(hitEffect, aimingTarget.position, Quaternion.Euler(hit.normal));
+                Debug.Log(hit.collider.name);
+                if (hit.collider.TryGetComponent(typeof(Hitbox), out var comp))
+                {
+                    (comp as Hitbox)?.OnDamage(Gun.damage);
+                    
+                }
+                var o = Instantiate(hitEffect, hit.point, Quaternion.Euler(hit.normal));
                 Destroy(o, 5);
-                
             }
         }
     }
