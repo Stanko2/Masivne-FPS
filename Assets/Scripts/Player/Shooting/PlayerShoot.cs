@@ -15,7 +15,7 @@ namespace Player
         public LayerMask shootMask;
         
         public Gun Gun { get; private set; }
-        private Transform _aimTransform;
+        public Transform aimTransform;
         private PhotonView _view;
         public Animator animator;
 
@@ -24,7 +24,6 @@ namespace Player
         private void Start()
         {
             Gun = Instantiate(gunPrefab, hand).GetComponent<Gun>();
-            _aimTransform = Camera.main.transform;
             _view = GetComponent<PhotonView>();
             _ammoRemaining = Gun.ammoCount;
             if (_view.IsMine)
@@ -51,17 +50,12 @@ namespace Player
         public void UpdateAimPosition()
         {
             aimCamera.SetActive(Input.GetButton("Fire2"));
-
-            GetComponent<Collider>().enabled = false;
-            if (Physics.Raycast(_aimTransform.position, _aimTransform.forward, out _hit))
+            if (Physics.Raycast(aimTransform.position, aimTransform.forward, out _hit, float.PositiveInfinity, shootMask))
             {
                 aimingTarget.position = _hit.point;
             }
             else
-                aimingTarget.position = _aimTransform.position + 100 * _aimTransform.forward;
-
-            GetComponent<Collider>().enabled = true;
-
+                aimingTarget.position = aimTransform.position + 100 * aimTransform.forward;
         }
         
         [PunRPC]
@@ -84,7 +78,7 @@ namespace Player
                 }
                 else
                 {
-                    photonView.RPC(nameof(Shoot), RpcTarget.All, _aimTransform.position, _aimTransform.forward);
+                    photonView.RPC(nameof(Shoot), RpcTarget.All, aimTransform.position, aimTransform.forward);
                 }
                     
                 

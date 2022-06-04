@@ -14,10 +14,11 @@ namespace Player
         private float _health;
         private PlayerRagdoll _playerRagdoll;
 
-        private void Start()
+        public void Init()
         {
             _health = maxHealth;
             _controller = GetComponent<PlayerController>();
+            Debug.Log("health start");
             _playerRagdoll = GetComponentInChildren<PlayerRagdoll>();
             _playerRagdoll.SetRagdollActive(false);
             if(photonView.IsMine)

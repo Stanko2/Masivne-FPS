@@ -15,13 +15,15 @@ namespace Player
         public PhotonView View { get; private set; }
         public Animator animator;
         public new GameObject renderer;
-        
+
         private void Start()
         {
+            
             _controller = GetComponent<CharacterController>();
             _gravity = GetComponent<Gravity>();
             View = GetComponent<PhotonView>();
             renderer.SetActive(true);
+            GetComponent<PlayerHealth>().Init();
         }
 
         private void Update()

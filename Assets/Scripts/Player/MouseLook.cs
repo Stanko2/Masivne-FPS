@@ -11,10 +11,9 @@ namespace Player
         public float rotationSpeed;
         public Transform player;
         public GameObject aimCamera;
-        public GameObject camera;
+        public new GameObject camera;
         public PlayerController controller;
         private float _currRot;
-        
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -35,7 +34,7 @@ namespace Player
             player.RotateAround(player.position, Vector3.up, rotX * mouseSensitivity * Time.deltaTime);
 
             _currRot += rotY * mouseSensitivity * Time.deltaTime;
-            _currRot = Mathf.Clamp(_currRot, -90f, 90f);
+            _currRot = Mathf.Clamp(_currRot, -70f, 70f);
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(_currRot, 0, 0), rotationSpeed * Time.deltaTime);
         }
 
