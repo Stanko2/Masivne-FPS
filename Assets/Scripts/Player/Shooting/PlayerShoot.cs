@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using Photon.Pun;
+using UI;
 using UnityEngine;
 
 namespace Player
@@ -27,7 +29,10 @@ namespace Player
             _view = GetComponent<PhotonView>();
             _ammoRemaining = Gun.ammoCount;
             if (_view.IsMine)
+            {
                 InvokeRepeating(nameof(SendAimPosition), 0, .1f);
+                CrossHair.instance.SetAimTransform(aimingTarget);
+            }
         }
 
         private void SendAimPosition()
@@ -50,7 +55,10 @@ namespace Player
         public void UpdateAimPosition()
         {
             aimCamera.SetActive(Input.GetButton("Fire2"));
-            if (Physics.Raycast(aimTransform.position, aimTransform.forward, out _hit, float.PositiveInfinity, shootMask))
+            var hits = Physics.RaycastAll(aimTransform.position, aimTransform.forward, float.PositiveInfinity,
+                shootMask);
+            _hit = hits.FirstOrDefault(e => !e.collider.transform.IsChildOf(transform));
+            if (_hit.collider != null)
             {
                 aimingTarget.position = _hit.point;
             }

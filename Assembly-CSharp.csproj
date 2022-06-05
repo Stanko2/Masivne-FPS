@@ -56,6 +56,7 @@
      <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\Player\Shooting\PlayerShoot.cs" />
+     <Compile Include="Assets\Scripts\Player\Hitbox.cs" />
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
      <Compile Include="Assets\Scripts\ConnectToServer.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
@@ -74,7 +75,6 @@
      <Compile Include="Assets\Scripts\Player\Shooting\ShootState.cs" />
      <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
      <Compile Include="Assets\Scripts\Player\Shooting\AimState.cs" />
-     <Compile Include="Assets\Scripts\Player\Hitbox.cs" />
      <None Include="Assets\Models\Guns\VSS\Texture\M_WEP_VSS_Reticle.props.txt" />
      <None Include="Assets\Models\Guns\SKS\Texture\M_WEP_SKS_Lod.props.txt" />
      <None Include="Assets\Models\Guns\AWM\Texture\M_WEP_AWM.props.txt" />
