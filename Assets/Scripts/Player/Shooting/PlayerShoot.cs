@@ -8,6 +8,7 @@ namespace Player
 {
     public class PlayerShoot : MonoBehaviourPun
     {
+        public event Action<int> OnShoot;
         public GameObject gunPrefab;
         
         public Transform hand;
@@ -31,7 +32,8 @@ namespace Player
             if (_view.IsMine)
             {
                 InvokeRepeating(nameof(SendAimPosition), 0, .1f);
-                CrossHair.instance.SetAimTransform(aimingTarget);
+                FindObjectOfType<CrossHair>().SetAimTransform(aimingTarget);
+                FindObjectOfType<AmmoPanel>().Initialize(this);
             }
         }
 
@@ -47,14 +49,14 @@ namespace Player
             if (!_view.IsMine)
                 return;
             _timer += Time.deltaTime;
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire"))
                 SendShoot();
             UpdateAimPosition();
         }
 
         public void UpdateAimPosition()
         {
-            aimCamera.SetActive(Input.GetButton("Fire2"));
+            aimCamera.SetActive(Input.GetButton("Aim"));
             var hits = Physics.RaycastAll(aimTransform.position, aimTransform.forward, float.PositiveInfinity,
                 shootMask);
             _hit = hits.FirstOrDefault(e => !e.collider.transform.IsChildOf(transform));
@@ -78,6 +80,7 @@ namespace Player
             {
                 _lastShot = _timer;
                 _ammoRemaining--;
+                OnShoot?.Invoke(_ammoRemaining);
                 if (_ammoRemaining == -1)
                 {
                     animator.SetTrigger("Reload");

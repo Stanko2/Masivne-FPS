@@ -6,12 +6,13 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        public float moveSpeed = 8f;
+        public float moveSpeed = 5f;
+        public float sprintMoveSpeed = 5f;
         public float jumpHeight = 1.5f;
         
         private CharacterController _controller;
         private Gravity _gravity;
-        private Vector3 _lastVelocity = Vector3.zero;
+        private float _currentMoveSpeed;
         public PhotonView View { get; private set; }
         public Animator animator;
         public new GameObject renderer;
@@ -33,19 +34,30 @@ namespace Player
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
 
+            
             var move = transform.forward * vertical + transform.right * horizontal;
-            _controller.Move(move * (moveSpeed * Time.deltaTime));
-
+            _controller.Move(move * (_currentMoveSpeed * Time.deltaTime));
+            
             if (Input.GetButtonDown("Jump") && _gravity.IsGrounded)
             {
                 _gravity.AddVerticalForce(Mathf.Sqrt(-2f * jumpHeight * _gravity.gravity));
                 animator.SetTrigger("Jump");
             }
+
+            if (Input.GetButton("Sprint"))
+            {
+                animator.SetBool("Running", true);
+                _currentMoveSpeed = Mathf.Lerp(_currentMoveSpeed, sprintMoveSpeed, 10 * Time.deltaTime);
+            }
+            else
+            {
+                animator.SetBool("Running", false);
+                _currentMoveSpeed = Mathf.Lerp(_currentMoveSpeed, moveSpeed, 10 * Time.deltaTime);
+            }
             
             animator.SetFloat("SpeedX", horizontal);
             animator.SetFloat("SpeedY", vertical);
             animator.SetFloat("Speed", move.magnitude);
-            _lastVelocity = _controller.velocity;
         }
     }
 }

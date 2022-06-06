@@ -109,10 +109,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 170
   rotationSpeed: 10
+  aimSensitivity: 50
   player: {fileID: 2614296751678826252}
   aimCamera: {fileID: 269981468902358640}
   camera: {fileID: 6179228327820093578}
   controller: {fileID: 2614296751678826255}
+  minRotX: -70
+  maxRotX: 70
+  minAimRotX: -70
+  maxAimRotX: 50
 --- !u!1 &166111547187574461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  sprintMoveSpeed: 10
   jumpHeight: 1.5
   animator: {fileID: 6924860859602288638}
   renderer: {fileID: 7006590983213684491}

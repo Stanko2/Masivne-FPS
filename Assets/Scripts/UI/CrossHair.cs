@@ -11,14 +11,8 @@ namespace UI
         public Image crossHair;
         public Color enemyColor;
         public Color normalColor;
-        public static CrossHair instance;
         private Transform _aimTransform;
         
-        private void Awake()
-        {
-            instance = this;
-        }
-
         public void SetAimTransform(Transform aim)
         {
             _aimTransform = aim;
