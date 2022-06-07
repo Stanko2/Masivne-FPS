@@ -24,11 +24,14 @@ namespace Player
 
         private int _ammoRemaining;
         private RaycastHit _hit;
+        private bool _enabled;
+        private PlayerController _controller;
         private void Start()
         {
             Gun = Instantiate(gunPrefab, hand).GetComponent<Gun>();
             _view = GetComponent<PhotonView>();
             _ammoRemaining = Gun.ammoCount;
+            _controller = GetComponent<PlayerController>();
             if (_view.IsMine)
             {
                 InvokeRepeating(nameof(SendAimPosition), 0, .1f);
@@ -46,7 +49,7 @@ namespace Player
         private float _lastShot;
         private void Update()
         {
-            if (!_view.IsMine)
+            if (!_view.IsMine || !_enabled)
                 return;
             _timer += Time.deltaTime;
             if (Input.GetButton("Fire"))
@@ -54,6 +57,11 @@ namespace Player
             UpdateAimPosition();
         }
 
+        public void SetEnabled(bool isEnabled)
+        {
+            _enabled = isEnabled;
+        }
+        
         public void UpdateAimPosition()
         {
             aimCamera.SetActive(Input.GetButton("Aim"));
@@ -91,8 +99,6 @@ namespace Player
                 {
                     photonView.RPC(nameof(Shoot), RpcTarget.All, aimTransform.position, aimTransform.forward);
                 }
-                    
-                
             }
         }
         
@@ -108,8 +114,11 @@ namespace Player
                 Debug.Log(hit.collider.name);
                 if (hit.collider.TryGetComponent(typeof(Hitbox), out var comp))
                 {
-                    (comp as Hitbox)?.OnDamage(Gun.damage);
-                    
+                    var hasKill = (comp as Hitbox)?.OnDamage(Gun.damage);
+                    if (hasKill == true)
+                    {
+                        StatsCounter.Instance.OnKill(_controller.owningPlayerId, ((Hitbox) comp).OwningPlayerId);
+                    }
                 }
                 var o = Instantiate(hitEffect, hit.point, Quaternion.Euler(hit.normal));
                 Destroy(o, 5);

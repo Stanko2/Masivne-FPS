@@ -1,4 +1,5 @@
 using System;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Player
@@ -8,14 +9,15 @@ namespace Player
         public float damageMultiplier;
         private PlayerHealth _playerHealth;
 
+        public int OwningPlayerId => _playerHealth.GetComponent<PlayerController>().owningPlayerId;
         private void Start()
         {
             _playerHealth = GetComponentInParent<PlayerHealth>();
         }
 
-        public void OnDamage(float damage)
+        public bool OnDamage(float damage)
         {
-            _playerHealth.ApplyDamage(damage * damageMultiplier);
+            return _playerHealth.ApplyDamage(damage * damageMultiplier);
         }
     }
 }

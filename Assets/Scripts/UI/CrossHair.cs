@@ -22,9 +22,10 @@ namespace UI
         {
             if (Camera.main != null && _aimTransform != null)
             {
-                bool enemyDetected = Physics.OverlapSphere(_aimTransform.position, 0.001f).Any(e => e.TryGetComponent(typeof(Hitbox), out var c));
+                var enemyDetected = Physics.OverlapSphere(_aimTransform.position, 0.001f).Any(e => e.TryGetComponent(typeof(Hitbox), out var c));
                 crossHair.color = enemyDetected ? enemyColor : normalColor;
-                transform.position = Camera.main.WorldToScreenPoint(_aimTransform.position);
+                
+                transform.position = Vector3.Lerp(transform.position, Camera.main.WorldToScreenPoint(_aimTransform.position), 10 * Time.deltaTime);
             }
         }
     }

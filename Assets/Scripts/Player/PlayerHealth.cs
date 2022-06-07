@@ -25,7 +25,7 @@ namespace Player
                 FindObjectOfType<HealthBar>().Initialize(this);
         }
 
-        public void ApplyDamage(float amount)
+        public bool ApplyDamage(float amount)
         {
             _health -= amount;
             Debug.Log(amount);
@@ -34,7 +34,10 @@ namespace Player
             if (_health <= 0)
             {
                 Dead();
+                return true;
             }
+
+            return false;
         }
 
         private void Dead()
