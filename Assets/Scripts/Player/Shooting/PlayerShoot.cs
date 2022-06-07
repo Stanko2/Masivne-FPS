@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Photon.Pun;
+using Player.Shooting;
 using UI;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Player
         public Transform aimingTarget;
         public GameObject aimCamera;
         public GameObject hitEffect;
+        public GameObject bullet;
         public LayerMask shootMask;
         
         public Gun Gun { get; private set; }
@@ -121,6 +123,8 @@ namespace Player
                     }
                 }
                 var o = Instantiate(hitEffect, hit.point, Quaternion.Euler(hit.normal));
+                var b = Instantiate(bullet, Gun.muzzle.position, Gun.muzzle.rotation).GetComponent<Bullet>();
+                b.TargetPos = hit.point;
                 Destroy(o, 5);
             }
         }

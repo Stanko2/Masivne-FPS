@@ -79,6 +79,7 @@
      <Compile Include="Assets\Scripts\UI\PlayerTable.cs" />
      <Compile Include="Assets\Scripts\StatsCounter.cs" />
      <Compile Include="Assets\Scripts\UI\PlayerTableRow.cs" />
+     <Compile Include="Assets\Scripts\Player\Shooting\Bullet.cs" />
      <None Include="Assets\Models\Guns\VSS\Texture\M_WEP_VSS_Reticle.props.txt" />
      <None Include="Assets\Models\Guns\SKS\Texture\M_WEP_SKS_Lod.props.txt" />
      <None Include="Assets\Models\Guns\AWM\Texture\M_WEP_AWM.props.txt" />
@@ -778,6 +779,12 @@
  </Reference>
  <Reference Include="Unity.RenderPipelines.Core.Editor">
  <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Editor">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Postprocessing.Runtime">
+ <HintPath>/home/stanko/Games/Masivne FPS/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
