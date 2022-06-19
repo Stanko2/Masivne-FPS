@@ -534,7 +534,7 @@ CharacterJoint:
     bounciness: 0
     contactDistance: 0
   m_Swing2Limit:
-    limit: 0
+    limit: 8.047423
     bounciness: 0
     contactDistance: 0
   m_EnableProjection: 0
@@ -2245,7 +2245,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445598444330172222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 82d72f08c87c873baa72a16ec19ee8b7, type: 3}
   m_Controller: {fileID: 9100000, guid: 1acfa677e86b0bc5880d97399d523f41, type: 2}
   m_CullingMode: 1
@@ -2263,7 +2263,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445598444330172222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
   m_Name: 
@@ -2311,6 +2311,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 0
     Name: Dead
+  - Type: 4
+    SynchronizeType: 0
+    Name: Running
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -2328,6 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be124712e1824c4b91ade512b8204c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeLerpTime: 0.5
 --- !u!1 &4482270919096127767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,6 +4001,7 @@ GameObject:
   - component: {fileID: 6788769405981301538}
   - component: {fileID: 1285829478346474583}
   - component: {fileID: 8696823289488661453}
+  - component: {fileID: 2720527166241142891}
   m_Layer: 8
   m_Name: Hips
   m_TagString: Untagged
@@ -4050,6 +4055,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2720527166241142891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504801545804594526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744b852d937447228a4914445a2e24ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 2
 --- !u!1 &8254321024222847593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,7 +4092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8254321024222847593}
   m_LocalRotation: {x: 0.28668225, y: 0.49174425, z: 0.81927824, w: 0.069167085}
-  m_LocalPosition: {x: -0.0504, y: -0.1577, z: -0.0498}
+  m_LocalPosition: {x: -0.023, y: -0.176, z: -0.164}
   m_LocalScale: {x: 0.24376307, y: 0.24376304, z: 0.24376312}
   m_Children: []
   m_Father: {fileID: 2826636901497709541}

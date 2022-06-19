@@ -11,15 +11,15 @@ namespace Player
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
-            var rig = animator.gameObject.GetComponent<RigBuilder>();
-            rig.layers[0].active = false;
+            var rig = animator.gameObject.GetComponent<PlayerRagdoll>();
+            rig.SetRigAimActive(false);
         }
 
         public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo,
             int layerIndex)
         {
-            var rig = animator.GetComponent<RigBuilder>();
-            rig.layers[0].active = true;
+            var rig = animator.GetComponent<PlayerRagdoll>();
+            rig.SetRigAimActive(true);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo,

@@ -19,11 +19,12 @@ namespace Player
         public PhotonView View { get; private set; }
         public Animator animator;
         public new GameObject renderer;
+        public float Speed { get; private set; }
         private static readonly int Running = Animator.StringToHash("Running");
         private static readonly int Jump = Animator.StringToHash("Jump");
         private static readonly int SpeedX = Animator.StringToHash("SpeedX");
         private static readonly int SpeedY = Animator.StringToHash("SpeedY");
-        private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int SpeedParam = Animator.StringToHash("Speed");
 
         private void Start()
         {
@@ -50,9 +51,10 @@ namespace Player
                 return;
             var horizontal = Input.GetAxis("Horizontal");
             var vertical = Input.GetAxis("Vertical");
-            _playerShoot.SetEnabled(_gravity.IsGrounded || animator.GetBool(Running));
+            _playerShoot.SetEnabled(_gravity.IsGrounded && !animator.GetBool(Running));
             
             var move = transform.forward * vertical + transform.right * horizontal;
+            Speed = (move * _currentMoveSpeed).magnitude;
             _controller.Move(move * (_currentMoveSpeed * Time.deltaTime));
             
             if (Input.GetButtonDown("Jump") && _gravity.IsGrounded)
@@ -74,7 +76,7 @@ namespace Player
             
             animator.SetFloat(SpeedX, horizontal);
             animator.SetFloat(SpeedY, vertical);
-            animator.SetFloat(Speed, move.magnitude);
+            animator.SetFloat(SpeedParam, move.magnitude);
         }
     }
 }

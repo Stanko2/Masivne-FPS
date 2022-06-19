@@ -49,7 +49,7 @@ MonoBehaviour:
   muzzleFlashEffect: {fileID: 6422160351800543127, guid: 47b0becb56991dc6381f1d815a7dff77, type: 3}
   rateOfFire: 0.1
   damage: 20
-  recoil: 2
+  recoil: 0.1
   ammoCount: 20
   reloadTime: 5
 --- !u!1 &3279716744108202053

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -35,6 +36,25 @@ namespace Player
 
             _animator.enabled = !active;
             _rigBuilder.enabled = !active;
+        }
+
+        public void SetRigAimActive(bool active)
+        {
+            StartCoroutine(SetRigActive(active));
+        }
+
+        [SerializeField] private float activeLerpTime = .5f;
+        private IEnumerator SetRigActive(bool active)
+        {
+            var t = 0f;
+            while (t < activeLerpTime)
+            {
+                _rigBuilder.layers[0].rig.weight = active ? t / activeLerpTime : 1 - t / activeLerpTime;
+                t += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+
+            _rigBuilder.layers[0].rig.weight = active ? 1 : 0;
         }
     }
 }
