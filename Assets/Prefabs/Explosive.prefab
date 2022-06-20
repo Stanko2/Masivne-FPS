@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8201399830864797679}
   - component: {fileID: 781458582420962}
   - component: {fileID: 8742191408839631462}
+  - component: {fileID: 4382513260088359816}
   m_Layer: 8
   m_Name: Explosive
   m_TagString: Untagged
@@ -63,6 +64,25 @@ CapsuleCollider:
   m_Height: 0.8315468
   m_Direction: 1
   m_Center: {x: 0, y: 0.4157734, z: 0}
+--- !u!114 &4382513260088359816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3857854979733841543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b71e7c648344b40a1b394ec790f35c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  explosionEffectPrefab: {fileID: 2905540271253731138, guid: acb54db0f3870e2adbbfa6b6683bee7e, type: 3}
+  explosionDamage: 100
+  explosionRange: 5
+  damageMask:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &5595336428847819763
 GameObject:
   m_ObjectHideFlags: 0

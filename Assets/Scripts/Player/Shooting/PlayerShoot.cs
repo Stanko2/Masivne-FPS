@@ -122,12 +122,12 @@ namespace Player
             if(_mouseLook != null) _mouseLook.AddRecoil(-Gun.recoil);
             if (Physics.Raycast(position, direction, out var hit, float.PositiveInfinity ,shootMask))
             {
-                if (hit.collider.TryGetComponent(typeof(Hitbox), out var comp))
+                if (hit.collider.TryGetComponent(typeof(IDamageable), out var comp))
                 {
-                    var hasKill = (comp as Hitbox)?.OnDamage(Gun.damage);
-                    if (hasKill == true)
+                    var hasKill = (comp as IDamageable)?.ApplyDamage(Gun.damage);
+                    if (hasKill == true && comp is Hitbox hitbox)
                     {
-                        StatsCounter.Instance.OnKill(_controller.owningPlayerId, ((Hitbox) comp).OwningPlayerId);
+                        StatsCounter.Instance.OnKill(_controller.owningPlayerId, hitbox.OwningPlayerId);
                     }
                 }
 

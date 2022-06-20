@@ -5,18 +5,18 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerHealth : MonoBehaviourPun
+    public class PlayerHealth : MonoBehaviourPun, IDamageable
     {
         public float maxHealth;
         public event Action<float> OnHealthChange;
         public GameObject deathCam;
         private PlayerController _controller;
-        private float _health;
+        public float Health { get; set; }
         private PlayerRagdoll _playerRagdoll;
 
         public void Init()
         {
-            _health = maxHealth;
+            Health = maxHealth;
             _controller = GetComponent<PlayerController>();
             Debug.Log("health start");
             _playerRagdoll = GetComponentInChildren<PlayerRagdoll>();
@@ -27,11 +27,11 @@ namespace Player
 
         public bool ApplyDamage(float amount)
         {
-            _health -= amount;
+            Health -= amount;
             Debug.Log(amount);
             _controller.animator.SetTrigger("Hit");
-            OnHealthChange?.Invoke(_health);
-            if (_health <= 0)
+            OnHealthChange?.Invoke(Health);
+            if (Health <= 0)
             {
                 Dead();
                 return true;
@@ -40,7 +40,7 @@ namespace Player
             return false;
         }
 
-        private void Dead()
+        public void Dead()
         {
             _controller.animator.SetTrigger("Dead");
             _controller.enabled = false;

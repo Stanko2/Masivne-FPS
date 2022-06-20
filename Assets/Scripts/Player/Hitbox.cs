@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class Hitbox : MonoBehaviour
+    public class Hitbox : MonoBehaviour, IDamageable
     {
         public float damageMultiplier;
         private PlayerHealth _playerHealth;
@@ -14,10 +14,15 @@ namespace Player
         {
             _playerHealth = GetComponentInParent<PlayerHealth>();
         }
-
-        public bool OnDamage(float damage)
+        public float Health { get; set; }
+        public bool ApplyDamage(float amount)
         {
-            return _playerHealth.ApplyDamage(damage * damageMultiplier);
+            return _playerHealth.ApplyDamage(amount * damageMultiplier);
+        }
+
+        public void Dead()
+        {
+            throw new NotImplementedException();
         }
     }
 }
